@@ -1,0 +1,9 @@
+.side-container{
+    background-color: bisque;
+    margin-right: 8rem;
+    width: 25%;
+}
+
+.side-container h2{
+    text-align: center;
+}

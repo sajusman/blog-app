@@ -1,0 +1,38 @@
+.create-blog label{
+    text-align: center;
+}
+
+.create-blog input{
+    height: 2rem;
+}
+
+.create-blog textarea{
+    height: 8rem;
+}
+
+.create-blog form{
+    display: grid;
+}
+
+
+.blog-list{
+    clear: both;
+}
+
+.blog-title{
+    cursor: pointer;
+}
+
+.create-blog {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+.blogs-head-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

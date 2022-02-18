@@ -1,0 +1,45 @@
+.post-controler{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.post-controler button{
+    margin: .2rem;
+}
+
+.posts-container{
+display: flex;
+flex-wrap: wrap;
+text-align: center;
+}
+
+.post-row-item{
+    flex-basis: 18rem;
+    margin: 2rem;
+    box-sizing:border-box;
+}
+
+.comments li{
+    margin: 2rem;
+}
+
+.comment-box-container{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    margin: 2rem 19rem;    
+}
+
+.comment-box-container textarea{
+    width: 50rem;
+    height: 10rem;
+    text-align: center;
+}
+
+.comment-box-container input{
+    width: 50rem;
+    height: 1.5rem;
+    text-align: center;
+}
+
