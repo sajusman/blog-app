@@ -9,21 +9,24 @@ interface IProps {
     postId: string
 }
 
+const emptyState = {
+    postId: "",
+    id: "",
+    name: "",
+    email: "",
+    body: ""
+};
+
 function Comments({ comments, postId }: IProps) {
 
     function handleSubmit() {
         PostService.addComment(comment).then(res => {
-            console.log(res)
+            console.log(res);
         });
+        setComment({ ...emptyState, postId });
     }
 
-    const [comment, handleInput] = useForm<Comment>({
-        postId: "",
-        id: postId,
-        name: "",
-        email: "",
-        body: ""
-    });
+    const [comment, setComment, handleInput] = useForm<Comment>({ ...emptyState, postId });
 
     return (
         <div className='comments'>

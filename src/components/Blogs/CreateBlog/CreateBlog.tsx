@@ -7,8 +7,10 @@ import {
 import { useAppDispatch } from '../../../app/hooks';
 import { useForm } from '../../../custom-hooks/useForm';
 
+const emptyState = { title: "", author: "", content: "", category: "", tags: "", id: "" };
+
 function CreateBlog({ handleModalLeave }: any) {
-    const [blog, handleInput] = useForm<Blog>({ title: "", author: "", content: "", category: "", tags: "", id: "" });
+    const [blog, setBlog, handleInput] = useForm<Blog>(emptyState);
     const dispatch = useAppDispatch();
 
 
@@ -16,6 +18,7 @@ function CreateBlog({ handleModalLeave }: any) {
         e.preventDefault();
         dispatch(addBlog(blog));
         handleModalLeave();
+        setBlog(emptyState);
     }
 
     return (
@@ -33,10 +36,10 @@ function CreateBlog({ handleModalLeave }: any) {
                 <textarea name="content" value={blog.content} onChange={handleInput}></textarea>
 
                 <label>Category</label>
-                <input name="category" onChange={handleInput}></input>
+                <input name="category" value={blog.category} onChange={handleInput}></input>
 
                 <label>Tags</label>
-                <input name="tags" onChange={handleInput}></input>
+                <input name="tags" value={blog.tags} onChange={handleInput}></input>
 
                 <button onClick={submitBlog}>Submit</button>
             </form>
