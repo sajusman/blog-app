@@ -12,6 +12,9 @@ function Posts() {
         PostService.getAllPosts().then(res => {
             setPosts(res)
         });
+        return () => {
+            setPosts([]); // This worked for me
+        };
     }, [])
 
     const [gridLayout, setGridLayout] = useState(true);
@@ -29,8 +32,8 @@ function Posts() {
                     }}>Stack</button>
                 </div>
             </div>
-            <div className={gridLayout ? 'posts-container' : ''}>
-                {posts.map(post => <PostRowItem key={post.id} post={post} />)}
+            <div data-testid="posts-list" className={gridLayout ? 'posts-container' : ''}>
+                {posts.map((post, index) => <PostRowItem key={post.id} post={post} index={index} />)}
             </div>
         </ >
     );

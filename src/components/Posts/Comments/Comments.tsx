@@ -21,7 +21,7 @@ function Comments({ comments, postId }: IProps) {
 
     function handleSubmit() {
         PostService.addComment(comment).then(res => {
-            console.log(res);
+            console.log("In comments : " + res);
         });
         setComment({ ...emptyState, postId });
     }

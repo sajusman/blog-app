@@ -6,7 +6,7 @@ function Home() {
         <>
             <h2>Home</h2>
             <h3>Welcome to the Blog App</h3>
-            <p>
+            <p data-testid='lorem-ipsum'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan consectetur tortor sed ornare.
                 Nunc eget sapien ornare, lobortis magna sed, efficitur ante. Suspendisse quis pharetra lorem, sed pharetra risus.
                 Integer imperdiet lorem quam, vel euismod lacus molestie et. Etiam neque ante, scelerisque sit amet erat id, vehicula viverra ipsum.

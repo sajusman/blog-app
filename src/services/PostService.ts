@@ -1,7 +1,9 @@
 import Comment from "../interfaces/Comment";
 
 async function getAllPosts() {
-    return await (await fetch("https://jsonplaceholder.typicode.com/posts")).json();
+    const result = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await result.json();
+    return data;
 }
 
 async function getPostById(id: string) {

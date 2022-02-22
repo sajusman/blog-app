@@ -24,15 +24,17 @@ function Modal({ children, placeHolder }: IProps) {
 
     return (
         <>
-            <button onClick={() => {
+            <button name={placeHolder} onClick={() => {
                 setShowModal(true);
             }}>{placeHolder}</button>
-
-            <div className={showModal ? 'modal' : 'modal hidden'}>
-                <div ref={wrapperRef}>
-                    {ClonedElementWithMoreProps}
+            {showModal &&
+                <div className="modal">
+                    <div ref={wrapperRef}>
+                        {ClonedElementWithMoreProps}
+                    </div>
                 </div>
-            </div>
+            }
+
         </>
 
     );
