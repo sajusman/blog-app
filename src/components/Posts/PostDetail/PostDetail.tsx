@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import PostService from '../../../services/PostService';
 import { Post } from '../../../interfaces/Post';
@@ -16,6 +16,14 @@ function PostDetail() {
 
     const [loading, setLoading] = useState(true);
 
+    const fetchData = useCallback(() => {
+        return Promise.all(
+            [
+                PostService.getPostById(postId),
+                PostService.getPostsComment(postId)
+            ]);
+    }
+        , [postId]);
 
     useEffect(() => {
         fetchData().then(values => {
@@ -24,20 +32,19 @@ function PostDetail() {
             setLoading(false);
         });
 
-    }, [postId]);
+
+        return () => {
+            setPost({} as Post);
+            setComments([]);
+        }
+    }, [postId, fetchData]);
 
 
-    const fetchData = () => {
-        return Promise.all(
-            [
-                PostService.getPostById(postId),
-                PostService.getPostsComment(postId)
-            ]);
-    }
+
 
     return (
         <>
-            {loading ? <Loader loading={loading} /> : <PostRowItem key={postId} post={post} />}
+            {loading ? <Loader loading={loading} testId="post-detail-loader" /> : <PostRowItem key={postId} post={post} />}
             <div className='seperator' />
             <Comments comments={comments} postId={postId} />
         </>
