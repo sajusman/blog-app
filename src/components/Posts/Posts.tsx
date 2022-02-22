@@ -3,21 +3,25 @@ import "./Posts.css";
 import PostService from '../../services/PostService';
 import { Post } from '../../interfaces/Post';
 import PostRowItem from './PostRowItem/PostRowItem';
+import Loader from '../../ui-components/Loader';
 
 
 function Posts() {
 
     const [posts, setPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [gridLayout, setGridLayout] = useState(true);
+
     useEffect(() => {
         PostService.getAllPosts().then(res => {
-            setPosts(res)
+            setPosts(res);
+            setLoading(false);
         });
         return () => {
-            setPosts([]); // This worked for me
+            setPosts([]);
         };
     }, [])
 
-    const [gridLayout, setGridLayout] = useState(true);
 
     return (
         <>
@@ -33,9 +37,10 @@ function Posts() {
                 </div>
             </div>
             <div data-testid="posts-list" className={gridLayout ? 'posts-container' : ''}>
-                {posts.map((post, index) => <PostRowItem key={post.id} post={post} index={index} />)}
+                {loading ? <Loader loading={loading} testId="posts-list-loader" /> :
+                    posts.map((post, index) => <PostRowItem key={post.id} post={post} index={index} />)}
             </div>
-        </ >
+        </>
     );
 }
 

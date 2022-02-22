@@ -80,6 +80,11 @@ describe("Posts Page styling", () => {
 
 describe("Post page data", () => {
 
+    it("should be loading on page load", async () => {
+        const { getByTestId } = render(mockPost());
+        expect(getByTestId("posts-list-loader")).toBeInTheDocument();
+    })
+
     it("should render empty post list as default", () => {
         const { queryAllByTestId } = render(mockPost());
         expect(queryAllByTestId(/post-row-item-[0-9]+/).length).toBe(0);
