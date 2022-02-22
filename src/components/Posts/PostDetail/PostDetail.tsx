@@ -5,6 +5,7 @@ import { Post } from '../../../interfaces/Post';
 import PostRowItem from '../PostRowItem/PostRowItem';
 import Comments from '../Comments/Comments';
 import Comment from '../../../interfaces/Comment';
+import Loader from '../../../ui-components/Loader';
 
 function PostDetail() {
     const location = useLocation();
@@ -13,20 +14,30 @@ function PostDetail() {
     const [post, setPost] = useState({} as Post);
     const [comments, setComments] = useState<Comment[]>([]);
 
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
-        PostService.getPostById(postId).then(res => {
-            setPost(res);
+        fetchData().then(values => {
+            setPost(values[0]);
+            setComments(values[1]);
+            setLoading(false);
         });
 
-        PostService.getPostsComment(postId).then(res => {
-            setComments(res);
-        })
     }, [postId]);
 
 
+    const fetchData = () => {
+        return Promise.all(
+            [
+                PostService.getPostById(postId),
+                PostService.getPostsComment(postId)
+            ]);
+    }
+
     return (
-        <><PostRowItem key={postId} post={post} />
+        <>
+            {loading ? <Loader loading={loading} /> : <PostRowItem key={postId} post={post} />}
             <div className='seperator' />
             <Comments comments={comments} postId={postId} />
         </>
