@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Post } from '../../../interfaces/Post';
@@ -23,12 +23,12 @@ const mockPostItem = () => {
 
 describe("Post Row Item", () => {
     it("should render post item's heading", () => {
-        const { getByText } = render(mockPostItem());
-        expect(getByText(`${mockPostDI.id}) ${mockPostDI.title}`)).toBeInTheDocument();
+        render(mockPostItem());
+        expect(screen.getByText(`${mockPostDI.id}) ${mockPostDI.title}`)).toBeInTheDocument();
     });
 
     it("should render post item's body", () => {
-        const { getByText } = render(mockPostItem());
-        expect(getByText(mockPostDI.body)).toBeInTheDocument();
+        render(mockPostItem());
+        expect(screen.getByText(mockPostDI.body)).toBeInTheDocument();
     })
 })
