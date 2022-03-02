@@ -9,27 +9,30 @@ import SideContainer from './components/SideContainer/SideContainer';
 import RouteNotFound from './components/CodePages/RouteNotFound';
 import Posts from './components/Posts/Posts';
 import PostDetail from './components/Posts/PostDetail/PostDetail';
+import ThemeProvider from './contexts/ThemeContext/ThemeContext';
 
 
 function App() {
   return (
-    <div className="App">
-      <NavigationBar />
-      <div className='seperator' />
-      <div className='body'>
-        <div className='main-view'>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:blogId" element={<BlogDetail />} />
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/posts/:postId" element={<PostDetail />} />
-            <Route path="*" element={<RouteNotFound />}></Route>
-          </Routes>
+    <ThemeProvider>
+      <div className="App">
+        <NavigationBar />
+        <div className='seperator' />
+        <div className='body'>
+          <div className='main-view'>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/:blogId" element={<BlogDetail />} />
+              <Route path="/posts" element={<Posts />} />
+              <Route path="/posts/:postId" element={<PostDetail />} />
+              <Route path="*" element={<RouteNotFound />}></Route>
+            </Routes>
+          </div>
+          <SideContainer />
         </div>
-        <SideContainer />
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
